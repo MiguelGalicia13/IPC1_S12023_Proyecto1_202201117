@@ -6,6 +6,7 @@ package kioskos;
 
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +39,8 @@ private ArrayList<String> cK = new ArrayList<>();
         jLabel4 = new javax.swing.JLabel();
         codigoKiosko1 = new javax.swing.JLabel();
         Regi = new javax.swing.JLabel();
+        CambiarDatos = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -78,6 +81,20 @@ private ArrayList<String> cK = new ArrayList<>();
         Regi.setBackground(new java.awt.Color(255, 255, 255));
         Regi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        CambiarDatos.setText("Cambiar datos");
+        CambiarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CambiarDatosMouseClicked(evt);
+            }
+        });
+
+        back.setText("Volver");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,16 +119,26 @@ private ArrayList<String> cK = new ArrayList<>();
                         .addGap(171, 171, 171)
                         .addComponent(cdgoKsk, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(98, 98, 98)
-                        .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(579, Short.MAX_VALUE))
+                        .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(CambiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(397, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cdgoKsk, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(CambiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cdgoKsk, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(94, 94, 94)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,7 +149,9 @@ private ArrayList<String> cK = new ArrayList<>();
                     .addComponent(nameKiosko, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigoKiosko1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Regi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,14 +193,61 @@ private ArrayList<String> cK = new ArrayList<>();
 
     private void SearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchMouseClicked
         // TODO add your handling code here:
-        dtaKioskos dta = new dtaKioskos();
+        if (cdgoKsk.getItemCount() == 0) {
+    // El JComboBox está vacío
+    JOptionPane.showMessageDialog(null, "No hay Kioskos registrados", "Error", JOptionPane.ERROR_MESSAGE);
+} else {
+    // El JComboBox tiene elementos
+     dtaKioskos dta = new dtaKioskos();
         codigoKiosko1.setText((String) cdgoKsk.getSelectedItem());
         String x = (String) cdgoKsk.getSelectedItem();    
         int n= Integer.parseInt(x);
         nameKiosko.setText(dta.getNameKiosko().get(n));
         Regi.setText(dta.getRegKiosko().get(n));
-        
+}
     }//GEN-LAST:event_SearchMouseClicked
+
+    private void CambiarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CambiarDatosMouseClicked
+        // TODO add your handling code here:
+        if (cdgoKsk.getItemCount() == 0){
+            JOptionPane.showMessageDialog(null, "No hay Kioskos registrados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            int indice;
+        dtaKioskos dta = new dtaKioskos();
+        int cambiardatos = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea cambiar los datos?", "Confirmar acción", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if (cambiardatos == JOptionPane.YES_OPTION) {
+        // El usuario ha presionado "Sí"
+        int opcion =JOptionPane.showOptionDialog(null, "¿Cómo desea buscar el kiosko?", "Buscar Kiosko", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Nombre", "Región"}, "Nombre");
+            if(opcion == 0){
+            // Acción para buscar por nombre
+                String nuevoNombre = JOptionPane.showInputDialog(null, "Ingrese el nuevo nombre", "Cambiar nombre");
+                String n = codigoKiosko1.getText();
+                indice = Integer.parseInt(n);
+                dta.getNameKiosko().set(indice,nuevoNombre);
+     
+            }else{
+    // Acción para buscar por región
+            Object[] Regiones = {"Metropolitana", "Norte", "Nororiente", "Noroccidente", "Sur", "Suroriente", "Suroccidente"};
+            int selectedOption = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Seleccionar región", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, Regiones, Regiones[0]);
+            String nuevaRegion = Regiones[selectedOption].toString();
+            String n = codigoKiosko1.getText();
+            indice = Integer.parseInt(n);
+            dta.getRegKiosko().set(indice, nuevaRegion);
+        }
+        } else {
+
+}
+        }
+
+    }//GEN-LAST:event_CambiarDatosMouseClicked
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        mKioskos mk = new mKioskos();
+        mk.setVisible(true);
+    }//GEN-LAST:event_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -211,8 +287,10 @@ private ArrayList<String> cK = new ArrayList<>();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CambiarDatos;
     private javax.swing.JLabel Regi;
     private javax.swing.JToggleButton Search;
+    private javax.swing.JButton back;
     public static javax.swing.JComboBox<String> cdgoKsk;
     private javax.swing.JLabel codigoKiosko1;
     private javax.swing.JLabel jLabel1;

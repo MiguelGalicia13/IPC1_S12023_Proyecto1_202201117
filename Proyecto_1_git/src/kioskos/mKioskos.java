@@ -7,6 +7,7 @@ package kioskos;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import admin.menuAdmin;
 
 /**
  *
@@ -42,13 +43,18 @@ public class mKioskos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MANEJO DE KIOSKOS");
 
         jLabel2.setText("Nombre del Kiosko");
 
-        regionK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metropolitana", "Noroccidente", "Norotiente", "Norte","Sur","Suroccidente","Surotiente" }));
+        regionK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metropolitana", "Noroccidente", "Norotiente", "Norte","Suroccidente","Surotiente" }));
+        regionK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regionKActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Region de los kioskos");
 
@@ -59,6 +65,11 @@ public class mKioskos extends javax.swing.JFrame {
         });
 
         back.setText("VOLVER AL MENU");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -77,7 +88,7 @@ public class mKioskos extends javax.swing.JFrame {
             }
         });
 
-        aKioskos.setText("ASIGNAR EMPLEADOS");
+        aKioskos.setText("BUSCAR KIOSKOS");
         aKioskos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 aKioskosMouseClicked(evt);
@@ -186,8 +197,9 @@ public class mKioskos extends javax.swing.JFrame {
     private void registrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrar1MouseClicked
         // TODO add your handling code here:
         dtaKioskos dta = new dtaKioskos();
+        
         dta.registrar(getNameK(),getRegionK());
-        JOptionPane.showMessageDialog(null, "Se registro el kiosko \n"+"Codigo : 0"+dta.indice()+"\n Con el nombre: "+getNameK()+"\n"+"y Region: "+getRegionK());
+        JOptionPane.showMessageDialog(null, "Se registro el kiosko \n"+"Codigo : 0"+(dta.indice()-1)+"\n Con el nombre: "+getNameK()+"\n"+"y Region: "+getRegionK());
       
         
     }//GEN-LAST:event_registrar1MouseClicked
@@ -205,6 +217,18 @@ public class mKioskos extends javax.swing.JFrame {
   dispose();
         r.setVisible(true);
     }//GEN-LAST:event_aKioskosMouseClicked
+
+    private void regionKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regionKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_regionKActionPerformed
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        menuAdmin menu = new menuAdmin();
+        menu.setVisible(true);
+        
+    }//GEN-LAST:event_backMouseClicked
 
     /**
      * @param args the command line arguments

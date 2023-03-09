@@ -72,9 +72,16 @@
                           <Component id="cdgoKsk" min="-2" pref="194" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                           <Component id="Search" min="-2" pref="142" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="CambiarDatos" min="-2" pref="151" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="579" max="32767" attributes="0"/>
+                  <EmptySpace pref="397" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="back" min="-2" pref="151" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -82,9 +89,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cdgoKsk" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                      <Component id="Search" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="CambiarDatos" min="-2" pref="47" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cdgoKsk" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="Search" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -98,7 +111,9 @@
                       <Component id="codigoKiosko1" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="Regi" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="243" max="32767" attributes="0"/>
+                  <EmptySpace pref="127" max="32767" attributes="0"/>
+                  <Component id="back" min="-2" pref="78" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -165,6 +180,22 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="CambiarDatos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cambiar datos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CambiarDatosMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="back">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Volver"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="backMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

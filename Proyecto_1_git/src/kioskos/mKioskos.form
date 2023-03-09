@@ -119,7 +119,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="MANEJO DE KIOSKOS"/>
@@ -133,9 +133,12 @@
         <Component class="javax.swing.JComboBox" name="regionK">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Metropolitana&quot;, &quot;Noroccidente&quot;, &quot;Norotiente&quot;, &quot;Norte&quot;,&quot;Sur&quot;,&quot;Suroccidente&quot;,&quot;Surotiente&quot; })" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Metropolitana&quot;, &quot;Noroccidente&quot;, &quot;Norotiente&quot;, &quot;Norte&quot;,&quot;Suroccidente&quot;,&quot;Surotiente&quot; })" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regionKActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -155,6 +158,7 @@
             <Property name="text" type="java.lang.String" value="VOLVER AL MENU"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="backMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backActionPerformed"/>
           </Events>
         </Component>
@@ -169,7 +173,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="aKioskos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ASIGNAR EMPLEADOS"/>
+            <Property name="text" type="java.lang.String" value="BUSCAR KIOSKOS"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="aKioskosMouseClicked"/>
