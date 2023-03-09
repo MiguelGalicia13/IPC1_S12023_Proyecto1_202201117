@@ -114,6 +114,7 @@
             <Property name="text" type="java.lang.String" value="IR a manejo de kioskos"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="manageKioskosMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageKioskosActionPerformed"/>
           </Events>
         </Component>

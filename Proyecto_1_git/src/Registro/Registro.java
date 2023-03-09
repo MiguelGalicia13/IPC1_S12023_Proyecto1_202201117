@@ -4,7 +4,6 @@
  */
 package Registro;
 
-import Registro.ingreso;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.Icon;
@@ -398,19 +397,19 @@ public class Registro extends javax.swing.JFrame {
 
     private void newRegsiterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newRegsiterMouseClicked
         // TODO add your handling code here:
-        
+        datausers u = new datausers();
+
         if(verifyMail()&&verifyPsswrd(getNewPass())&&matchContras(getNewPass(),getCnfrmPass())&&celular(getNewCel())&&verifyDPI(getNewDPI())&&nacimiento(getDIAS(),getMes(),getaño())&&fto(lblImagen)&&mails(getNewEmail())){
             if(admin(getNewEmail())&&getrol().equals("Usuario Empresarial")){
-            ingreso.RGSTR();
+                u.registrar(getNewEmail(), getNewPass(), getNewName(), getNewApe(), getGenero(), getNewDPI(), getNewCel(), getNewNacionalidad(), getNewurs(), getrol());
             JOptionPane.showMessageDialog(null, "Se han registrado los datos de un usario empresarial");
             iu HUD = new iu();
             dispose();
             HUD.setVisible(true);
             }else if(mails(getNewEmail())==true&&getrol().equals("Usuario Cliente")){
-            ingreso.RGSTR();
+            u.registrar(getNewEmail(), getNewPass(), getNewName(), getNewApe(), getGenero(), getNewDPI(), getNewCel(), getNewNacionalidad(), getNewurs(), getrol());
             JOptionPane.showMessageDialog(null, "Se han registrado los datos de un usario cliente");
             iu HUD = new iu();
-            
             dispose();
             HUD.setVisible(true);
         }
@@ -549,11 +548,9 @@ File fichero;
     public boolean verifyMail(){
     datausers d = new datausers();
     String inputmail=getNewEmail();
-    for (int i = 0; i < d.tamanio(); i++) { 
-    if (inputmail.equals(d.getCorreos().get(i))) { 
-        return false; 
-    }
-    }
+    if(d.getCorreos().contains(getNewEmail())){
+        return false;
+    }  
     return true;
     }
 public boolean matchContras(String psswrd, String cnfrm){

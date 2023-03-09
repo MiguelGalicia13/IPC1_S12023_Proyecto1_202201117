@@ -5,8 +5,8 @@
 package admin;
 
 import javax.swing.JOptionPane;
-import usuarios.datos;
-import usuarios.busqueda;
+
+import kioskos.mKioskos;
 
 /**
  *
@@ -43,6 +43,11 @@ public class menuAdmin extends javax.swing.JFrame {
         jLabel1.setText("                Menú Administrador");
 
         manageKioskos.setText("IR a manejo de kioskos");
+        manageKioskos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageKioskosMouseClicked(evt);
+            }
+        });
         manageKioskos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageKioskosActionPerformed(evt);
@@ -126,6 +131,13 @@ public class menuAdmin extends javax.swing.JFrame {
     private void manageKioskosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageKioskosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_manageKioskosActionPerformed
+
+    private void manageKioskosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageKioskosMouseClicked
+        // TODO add your handling code here:
+        mKioskos k = new mKioskos();
+        dispose();
+        k.setVisible(true);
+    }//GEN-LAST:event_manageKioskosMouseClicked
 
     /**
      * @param args the command line arguments

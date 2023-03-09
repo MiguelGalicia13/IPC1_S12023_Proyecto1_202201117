@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package login;
 
 import javax.swing.JOptionPane;
@@ -9,13 +6,9 @@ import javax.swing.JTextField;
 import login.datausers;
 import admin.menuAdmin;
 import Registro.Registro;
+import Clientes.clientes;
 
-/**
- *
- * @author ricar
- */
 public class iu extends javax.swing.JFrame {
-public String mls;
     
     public iu() {
         initComponents();
@@ -158,29 +151,30 @@ public String mls;
 
     private void LGNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LGNMouseClicked
         // TODO add your handling code here:
-        mls = getUsrInput();
+
         datausers u = new datausers();
-        
-        u.login();
-        
-        if(u.validacion() ==true){
-            
-            if(getUsrInput().contains("@ipc1delivery.com")){
-                menuAdmin m = new menuAdmin();
+        menuAdmin m = new menuAdmin();
+        clientes c = new clientes();
+
+        if(getUsrInput().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese un correo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(u.validacion(getUsrInput(),getPswrdInput())){     
                 dispose();
-                
-            JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso");
-            m.setVisible(true);
+                if(getUsrInput().contains("@ipc1delivery.com")){
+                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+                    m.setVisible(true);
+                }
+                else if(getUsrInput().contains("@hotmail.com")||getUsrInput().contains("@yahoo.com")||getUsrInput().contains("@gmail.com")||getUsrInput().contains("@icloud.com")||getUsrInput().contains("@aol.com")||getUsrInput().contains("@outlook.com")){
+                     JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+                    c.setVisible(true);
+                }
+                }else; 
             
-            }else{
-                dispose();
-                //agregar interfaz usuario
-           
-            JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso");
-            }
             
             
-        }else JOptionPane.showMessageDialog(null, "datos incorrectos");
+            
+        
     }//GEN-LAST:event_LGNMouseClicked
 
     private void RGSRTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RGSRTMouseClicked
@@ -234,16 +228,12 @@ public String mls;
     public javax.swing.JTextField usrInput;
     // End of variables declaration//GEN-END:variables
 
-    public JTextField getPswrdInput() {
-        return pswrdInput;
+    public String getPswrdInput() {
+        return pswrdInput.getText();
     }
 
     public String getUsrInput() {
         return usrInput.getText();
     }
 
- 
-    
-    
-    
 }
