@@ -19,6 +19,9 @@ public class datausers {
     private  static ArrayList<String> usr = new ArrayList<String>(){{ add("Mikega13");}};
     private  static ArrayList<String> nacionalidad = new ArrayList<String>(){{ add("Guatemalteco");}};
     private  static ArrayList<String>cel = new ArrayList<String>(){{ add("49783893");}};
+    private  static ArrayList<Integer>dia = new ArrayList<Integer>(){{ add(13);}};
+    private  static ArrayList<String>mes = new ArrayList<String>(){{ add("Septiembre");}};
+    private  static ArrayList<Integer>año = new ArrayList<Integer>(){{ add(2004);}};
     
     public ArrayList<String> getCorreos() {
         return correos;
@@ -51,7 +54,7 @@ public class datausers {
 public  ArrayList<String> getusr() {
         return usr;
     }
-public void registrar(String mail,String contra,String nombre, String apellido,String gen, String DPI, String celular, String nacion, String usuario, String role){
+public void registrar(String mail,String contra,String nombre, String apellido,String gen, String DPI, String celular, String nacion, String usuario, String role, int day, String month, int year){
     correos.add(mail);
     contras.add(contra);
     Nm.add(nombre);
@@ -62,8 +65,23 @@ public void registrar(String mail,String contra,String nombre, String apellido,S
     usr.add(usuario);
     nacionalidad.add(nacion);
     cel.add(celular);
+    dia.add(day);
+    mes.add(month);
+    año.add(year);
     
 }
+
+    public static ArrayList<Integer> getDia() {
+        return dia;
+    }
+
+    public static ArrayList<String> getMes() {
+        return mes;
+    }
+
+    public static ArrayList<Integer> getAño() {
+        return año;
+    }
     
 
     

@@ -401,13 +401,13 @@ public class Registro extends javax.swing.JFrame {
 
         if(verifyMail()&&verifyPsswrd(getNewPass())&&matchContras(getNewPass(),getCnfrmPass())&&celular(getNewCel())&&verifyDPI(getNewDPI())&&nacimiento(getDIAS(),getMes(),getaño())&&fto(lblImagen)&&mails(getNewEmail())){
             if(admin(getNewEmail())&&getrol().equals("Usuario Empresarial")){
-                u.registrar(getNewEmail(), getNewPass(), getNewName(), getNewApe(), getGenero(), getNewDPI(), getNewCel(), getNewNacionalidad(), getNewurs(), getrol());
+                u.registrar(getNewEmail(), getNewPass(), getNewName(), getNewApe(), getGenero(), getNewDPI(), getNewCel(), getNewNacionalidad(), getNewurs(), getrol(),getDIAS(),getMes(),getaño());
             JOptionPane.showMessageDialog(null, "Se han registrado los datos de un usario empresarial");
             iu HUD = new iu();
             dispose();
             HUD.setVisible(true);
             }else if(mails(getNewEmail())==true&&getrol().equals("Usuario Cliente")){
-            u.registrar(getNewEmail(), getNewPass(), getNewName(), getNewApe(), getGenero(), getNewDPI(), getNewCel(), getNewNacionalidad(), getNewurs(), getrol());
+            u.registrar(getNewEmail(), getNewPass(), getNewName(), getNewApe(), getGenero(), getNewDPI(), getNewCel(), getNewNacionalidad(), getNewurs(), getrol(),getDIAS(),getMes(),getaño());
             JOptionPane.showMessageDialog(null, "Se han registrado los datos de un usario cliente");
             iu HUD = new iu();
             dispose();
