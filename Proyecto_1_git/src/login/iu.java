@@ -9,7 +9,7 @@ import Registro.Registro;
 import Clientes.clientes;
 
 public class iu extends javax.swing.JFrame {
-    
+    private static String correoActual;
     public iu() {
         initComponents();
         
@@ -166,7 +166,8 @@ public class iu extends javax.swing.JFrame {
                     m.setVisible(true);
                 }
                 else if(getUsrInput().contains("@hotmail.com")||getUsrInput().contains("@yahoo.com")||getUsrInput().contains("@gmail.com")||getUsrInput().contains("@icloud.com")||getUsrInput().contains("@aol.com")||getUsrInput().contains("@outlook.com")){
-                     JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+                     setCorreoActual(getUsrInput());
+                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
                     c.setVisible(true);
                 }
                 }else; 
@@ -234,6 +235,14 @@ public class iu extends javax.swing.JFrame {
 
     public String getUsrInput() {
         return usrInput.getText();
+    }
+
+    public static String getCorreoActual() {
+        return correoActual;
+    }
+
+    public void setCorreoActual(String correoIngresado) {
+        this.correoActual = correoIngresado;
     }
 
 }

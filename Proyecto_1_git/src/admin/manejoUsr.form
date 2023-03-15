@@ -63,7 +63,9 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="search" min="-2" pref="97" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Component id="Modificar" min="-2" pref="104" max="-2" attributes="0"/>
+                                  <Component id="Modificar" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="EliminarDatos" min="-2" pref="133" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -104,7 +106,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="299" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,6 +120,7 @@
                       <Component id="emails" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="search" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="Modificar" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="EliminarDatos" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -330,6 +333,14 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ModificarMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="EliminarDatos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar usuario"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="EliminarDatosMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

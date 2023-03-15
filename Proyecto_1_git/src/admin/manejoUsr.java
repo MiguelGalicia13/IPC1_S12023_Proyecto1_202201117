@@ -48,6 +48,7 @@ public static int indice;
         Nacionalidad = new javax.swing.JLabel();
         Usuario = new javax.swing.JLabel();
         Modificar = new javax.swing.JButton();
+        EliminarDatos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -108,6 +109,13 @@ public static int indice;
             }
         });
 
+        EliminarDatos.setText("Eliminar usuario");
+        EliminarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EliminarDatosMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,7 +133,9 @@ public static int indice;
                                 .addGap(18, 18, 18)
                                 .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
-                                .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(EliminarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +164,7 @@ public static int indice;
                                     .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +175,8 @@ public static int indice;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EliminarDatos))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,11 +254,16 @@ public static int indice;
         cambiarUsuario();
         
     }//GEN-LAST:event_ModificarMouseClicked
+
+    private void EliminarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarDatosMouseClicked
+        // TODO add your handling code here:
+        eliminar();
+    }//GEN-LAST:event_EliminarDatosMouseClicked
 public void cambiarUsuario(){
 datausers dta = new datausers();
     int cambiardatos = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea cambiar los datos?", "Confirmar acción", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE); 
         if (cambiardatos == JOptionPane.YES_OPTION){
-            Object[] opciones = {"Nombre", "Apellido", "DPI", "Celular", "Fecha de nacimiento"};
+            Object[] opciones = {"Nombre", "Apellido", "DPI", "Celular"};
             int selectedOption = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Seleccionar región", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, opciones[0]);
         switch(selectedOption){
             case 0:
@@ -266,16 +282,42 @@ datausers dta = new datausers();
                 String newCelular= JOptionPane.showInputDialog("Ingrese el nuevo celular");
                 dta.getNm().set(indice,newCelular);
                 break;
-            case 4:
-                cambioFecha c = new cambioFecha();
-                c.setVisible(true);
-               break;
-               
 
         }
         }     
 }
-
+public void eliminar(){
+    int eliminar = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea Eliminar al usuario?", "Confirmar acción", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE); 
+        if (eliminar== JOptionPane.YES_OPTION){
+            int dobleC = JOptionPane.showConfirmDialog(null, "¿Confirma que esta accion es irreversible?", "Confirmar acción", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE); 
+        if (dobleC== JOptionPane.YES_OPTION){
+            datausers dta = new datausers();
+            dta.getCorreos().remove(indice);
+            dta.getContras().remove(indice);
+            dta.getNm().remove(indice);
+            dta.getLstNm().remove(indice);
+            dta.getDPIs().remove(indice);
+            dta.getgenero().remove(indice);
+            dta.getcel().remove(indice);
+            dta.getrol().remove(indice);
+            dta.getnacionalidad().remove(indice);
+            dta.getusr().remove(indice);
+    Name.setText("");
+    LastName1.setText("");
+    DPI1.setText("");
+    Celular.setText("");
+    Rol1.setText("");
+    Genero.setText("");
+    Nacionalidad.setText("");
+    Usuario.setText("");
+    Nacimiento.setText("");
+     emails.setSelectedItem("");
+    emails.remove(indice);
+   
+            
+        }
+        }
+}
     /**
      * @param args the command line arguments
      */
@@ -346,6 +388,7 @@ public void declararUsuarios(String nombre,String apellido,String cui, String ce
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Celular;
     private javax.swing.JLabel DPI1;
+    private javax.swing.JButton EliminarDatos;
     private javax.swing.JLabel Genero;
     private javax.swing.JLabel LastName1;
     private javax.swing.JButton Modificar;

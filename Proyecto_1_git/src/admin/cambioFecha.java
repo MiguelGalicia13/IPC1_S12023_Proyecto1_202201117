@@ -75,9 +75,9 @@ public class cambioFecha extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(352, Short.MAX_VALUE)
+                .addContainerGap(360, Short.MAX_VALUE)
                 .addComponent(Verificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(60, 60, 60))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(68, 68, 68)
@@ -103,9 +103,9 @@ public class cambioFecha extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(265, Short.MAX_VALUE)
+                .addContainerGap(275, Short.MAX_VALUE)
                 .addComponent(Verificar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(37, 37, 37))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(158, 158, 158)
@@ -155,20 +155,25 @@ public class cambioFecha extends javax.swing.JFrame {
 
     private void VerificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerificarMouseClicked
         // TODO add your handling code here:
-         datausers dta = new datausers();
-        if(nacimiento(getNewDia(),getNewMes(),getNewAño())){
-           int i = manejoUsr.indice;
-           dta.getDia().set(i, getNewDia());
-           dta.getMes().set(i, getNewMes());
-           dta.getAño().set(i, getNewAño());
-           JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
-           dispose();
-        }else if((nacimiento(getNewDia(),getNewMes(),getNewAño()))==false)JOptionPane.showMessageDialog(null, "Fecha Incompatible", "Error", JOptionPane.ERROR_MESSAGE);
-            
+        verificacion();
+       
         
     }//GEN-LAST:event_VerificarMouseClicked
 public void verificacion(){
-   
+    datausers dta = new datausers();
+    int nuevodia = getNewDia();
+    String nmes = getNewMes();
+    int naño = getNewAño();
+   boolean fechaValida = nacimiento(nuevodia,nmes,naño);
+    if(fechaValida){
+    dta.getDia().set(manejoUsr.indice, nuevodia);
+    dta.getMes().set(manejoUsr.indice, nmes);
+    dta.getAño().set(manejoUsr.indice, naño);
+    JOptionPane.showMessageDialog(null, "Datos Registrados correctamente");
+    dispose();
+}else{
+    JOptionPane.showMessageDialog(null, "Fecha Incompatible", "Error", JOptionPane.ERROR_MESSAGE);
+}
 }
     public boolean nacimiento(int dia, String mes, int año){
     if(mes.equals("Febrero")&&(dia==30||dia==31)){
