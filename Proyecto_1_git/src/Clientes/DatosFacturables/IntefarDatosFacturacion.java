@@ -5,6 +5,7 @@
 package Clientes.DatosFacturables;
 
 import static admin.manejoUsr.indice;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import login.datausers;
 import login.iu;
@@ -14,7 +15,7 @@ import login.iu;
  * @author ricar
  */
 public class IntefarDatosFacturacion extends javax.swing.JFrame {
-private int index;
+
 
     /**
      * Creates new form IntefarDatosFacturacion
@@ -156,7 +157,7 @@ private int index;
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        index=indice(iu.getCorreoActual());
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
@@ -165,52 +166,97 @@ private int index;
 
     private void BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarMouseClicked
         // TODO add your handling code here:
-        datausers dta = new datausers();
-        Clientes.DatosFacturables.DatosDeFacturacion d = new Clientes.DatosFacturables.DatosDeFacturacion();
-        Name.setText(dta.getNm().get(index)+" "+dta.getLstNm().get(index));
-        Direccion.setText(d.getDireccion().get(index));
-        RTU.setText(d.getNIT().get(index));         
+datausers dta = new datausers();
+
+if (DatosDeFacturacion.getDireccion().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Debe registrar sus datos primero");
+} else {
+    int index = indice(iu.getCorreoActual()) - 1;
+    if (index >= 0 && index < DatosDeFacturacion.getDireccion().size()) {
+        Name.setText(dta.getNm().get(indice(iu.getCorreoActual())) + " " + dta.getLstNm().get(indice(iu.getCorreoActual())));
+        Direccion.setText(DatosDeFacturacion.getDireccion().get(index));
+        RTU.setText(DatosDeFacturacion.getNIT().get(index));
+    } else {
+        JOptionPane.showMessageDialog(null, "No se encontraron datos de facturación para este usuario");
+    }
+}
+
+            
         
         
     }//GEN-LAST:event_BuscarMouseClicked
 
     private void RegistrarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarDatosMouseClicked
         // TODO add your handling code here:
-        Clientes.DatosFacturables.DatosDeFacturacion d = new Clientes.DatosFacturables.DatosDeFacturacion();
-        String newDirec= JOptionPane.showInputDialog("Ingrese su Direccion");
-        d.getDireccion().set(index,newDirec);
-        String newDPI= JOptionPane.showInputDialog("Ingrese el nuevo NIT");
-        d.getNIT().set(index,newDPI);
-        JOptionPane.showMessageDialog(null,"Datos registrados correctamente");
+        int index = indice(iu.getCorreoActual());
+    Clientes.DatosFacturables.DatosDeFacturacion datosFacturables = new Clientes.DatosFacturables.DatosDeFacturacion();
+ArrayList<String> direccion = datosFacturables.getDireccion();
+ArrayList<String> nit = datosFacturables.getNIT();
+
+if (index >= 0) {
+    JOptionPane.showMessageDialog(null, "Ya existe una dirección y NIT asociados a este usuario");
+} else {
+    String newDirec = JOptionPane.showInputDialog("Ingrese su nueva dirección");
+    String newNIT = JOptionPane.showInputDialog("Ingrese el nuevo NIT");
+
+    if (newDirec != null && newNIT != null && !newDirec.isEmpty() && !newNIT.isEmpty()) {
+        direccion.add(newDirec);
+        nit.add(newNIT);
+        JOptionPane.showMessageDialog(null, "Datos registrados correctamente");
+    } else {
+        JOptionPane.showMessageDialog(null, "Debe ingresar una dirección y un NIT válidos");
+    }
+}
         
     }//GEN-LAST:event_RegistrarDatosMouseClicked
 
     private void EditarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarDatosMouseClicked
         // TODO add your handling code here:
-        datausers dta = new datausers();
-        Clientes.DatosFacturables.DatosDeFacturacion d = new Clientes.DatosFacturables.DatosDeFacturacion();
-        int cambiardatos = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea cambiar los datos?", "Confirmar acción", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE); 
-        if (cambiardatos == JOptionPane.YES_OPTION){
-            Object[] opciones = {"Nombre", "Direccion", "NIT"};
-            int selectedOption = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Seleccionar dato", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, opciones[0]);
+       datausers dta = new datausers();
+
+// Check if user has registered their data
+if(DatosDeFacturacion.getDireccion().get(indice(iu.getCorreoActual())-1).isEmpty()){
+    JOptionPane.showMessageDialog(null,"Debe registrar sus datos primero");
+} else {
+    int index = indice(iu.getCorreoActual());
+
+    // Ask for confirmation before updating data
+    int cambiardatos = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea cambiar los datos?", "Confirmar acción", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE); 
+
+    if (cambiardatos == JOptionPane.YES_OPTION) {
+        Object[] opciones = {"Nombre", "Direccion", "NIT"};
+        int selectedOption = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Seleccionar dato", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, opciones[0]);
+
         switch(selectedOption){
             case 0:
                 String newName= JOptionPane.showInputDialog("Ingrese el nuevo nombre");
-                dta.getNm().set(indice,newName);
-                 String newLastName= JOptionPane.showInputDialog("Ingrese el nuevo apellido");
-                dta.getLstNm().set(indice,newLastName);
+                String newLastName= JOptionPane.showInputDialog("Ingrese el nuevo apellido");
+                // Update name and last name using the datausers object
+                dta.getNm().set(index-1, newName);
+                dta.getLstNm().set(index-1, newLastName);
+                JOptionPane.showMessageDialog(null,"Nombre actualizado correctamente");
                 break;
             case 1:
-               String newDirec= JOptionPane.showInputDialog("Ingrese su nueva direccion");
-               d.getDireccion().set(index,newDirec);
+                String newDirec= JOptionPane.showInputDialog("Ingrese su nueva dirección");
+                // Update direccion using the DatosDeFacturacion object
+                DatosDeFacturacion.getDireccion().set(index-1, newDirec);
+                JOptionPane.showMessageDialog(null,"Dirección actualizada correctamente");
                 break;
             case 2:
                 String newDPI= JOptionPane.showInputDialog("Ingrese el nuevo NIT");
-                d.getNIT().set(index,newDPI);
+                // Update NIT using the DatosDeFacturacion object
+                DatosDeFacturacion.getNIT().set(index-1, newDPI);
+                JOptionPane.showMessageDialog(null,"NIT actualizado correctamente");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null,"Opción inválida");
                 break;
         }
-        
-        }
+    } else {
+        JOptionPane.showMessageDialog(null,"Operación cancelada");
+    }
+}
+         
     }//GEN-LAST:event_EditarDatosMouseClicked
 
     
@@ -271,9 +317,7 @@ public int indice(String email){
         return in;
     }
         return -1;
-}
-    public int getIndex() {
-        return index;
-    }
+}   
+    
 
 }
