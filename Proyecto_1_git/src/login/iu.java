@@ -162,6 +162,7 @@ public class iu extends javax.swing.JFrame {
         else if(u.validacion(getUsrInput(),getPswrdInput())){     
                 dispose();
                 if(getUsrInput().contains("@ipc1delivery.com")){
+                    setCorreoActual(getUsrInput());
                     JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
                     m.setVisible(true);
                 }
