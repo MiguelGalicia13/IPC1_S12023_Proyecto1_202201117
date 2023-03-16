@@ -144,11 +144,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar datos"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="RegistrarDatosMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="EditarDatos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar datos"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="EditarDatosMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

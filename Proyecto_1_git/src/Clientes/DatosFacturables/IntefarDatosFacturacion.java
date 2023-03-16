@@ -5,6 +5,7 @@
 package Clientes.DatosFacturables;
 
 import static admin.manejoUsr.indice;
+import javax.swing.JOptionPane;
 import login.datausers;
 import login.iu;
 
@@ -77,8 +78,18 @@ private int index;
         });
 
         RegistrarDatos.setText("Registrar datos");
+        RegistrarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RegistrarDatosMouseClicked(evt);
+            }
+        });
 
         EditarDatos.setText("Editar datos");
+        EditarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditarDatosMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,10 +166,52 @@ private int index;
     private void BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarMouseClicked
         // TODO add your handling code here:
         datausers dta = new datausers();
-        Name.setText(dta.getNm().get(index)+dta.getLstNm().get(index));
+        Clientes.DatosFacturables.DatosDeFacturacion d = new Clientes.DatosFacturables.DatosDeFacturacion();
+        Name.setText(dta.getNm().get(index)+" "+dta.getLstNm().get(index));
+        Direccion.setText(d.getDireccion().get(index));
+        RTU.setText(d.getNIT().get(index));         
         
         
     }//GEN-LAST:event_BuscarMouseClicked
+
+    private void RegistrarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarDatosMouseClicked
+        // TODO add your handling code here:
+        Clientes.DatosFacturables.DatosDeFacturacion d = new Clientes.DatosFacturables.DatosDeFacturacion();
+        String newDirec= JOptionPane.showInputDialog("Ingrese su Direccion");
+        d.getDireccion().set(index,newDirec);
+        String newDPI= JOptionPane.showInputDialog("Ingrese el nuevo NIT");
+        d.getNIT().set(index,newDPI);
+        JOptionPane.showMessageDialog(null,"Datos registrados correctamente");
+        
+    }//GEN-LAST:event_RegistrarDatosMouseClicked
+
+    private void EditarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarDatosMouseClicked
+        // TODO add your handling code here:
+        datausers dta = new datausers();
+        Clientes.DatosFacturables.DatosDeFacturacion d = new Clientes.DatosFacturables.DatosDeFacturacion();
+        int cambiardatos = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea cambiar los datos?", "Confirmar acción", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE); 
+        if (cambiardatos == JOptionPane.YES_OPTION){
+            Object[] opciones = {"Nombre", "Direccion", "NIT"};
+            int selectedOption = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Seleccionar dato", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, opciones[0]);
+        switch(selectedOption){
+            case 0:
+                String newName= JOptionPane.showInputDialog("Ingrese el nuevo nombre");
+                dta.getNm().set(indice,newName);
+                 String newLastName= JOptionPane.showInputDialog("Ingrese el nuevo apellido");
+                dta.getLstNm().set(indice,newLastName);
+                break;
+            case 1:
+               String newDirec= JOptionPane.showInputDialog("Ingrese su nueva direccion");
+               d.getDireccion().set(index,newDirec);
+                break;
+            case 2:
+                String newDPI= JOptionPane.showInputDialog("Ingrese el nuevo NIT");
+                d.getNIT().set(index,newDPI);
+                break;
+        }
+        
+        }
+    }//GEN-LAST:event_EditarDatosMouseClicked
 
     
     /**
@@ -221,9 +274,6 @@ public int indice(String email){
 }
     public int getIndex() {
         return index;
-    }
-    public void mostrarNombre(String nombre, String Apellido){
-        Name.setText(nombre+Apellido);
     }
 
 }
