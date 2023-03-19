@@ -156,7 +156,7 @@ public class iu extends javax.swing.JFrame {
         menuAdmin m = new menuAdmin();
         clientes c = new clientes();
 
-        if(getUsrInput().equals("")){
+        if(getUsrInput().equals("")){ // IF para saber si es Administrador o Usuario Cliente
             JOptionPane.showMessageDialog(null, "Ingrese un correo", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else if(u.validacion(getUsrInput(),getPswrdInput())){     
@@ -171,7 +171,7 @@ public class iu extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
                     c.setVisible(true);
                 }
-                }else; 
+                }
             
             
             

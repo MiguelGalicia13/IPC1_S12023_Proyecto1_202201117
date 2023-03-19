@@ -360,12 +360,13 @@ public void llenarCbox(){
     }
 }
 public void busqeuda(){
+    // Realiza la busqueda de los usuario seleccionado en el combobox
     datausers dta = new datausers();
     if(existencia(getEmails())){
     declararUsuarios(dta.getNm().get(indice),dta.getLstNm().get(indice),dta.getDPIs().get(indice), dta.getcel().get(indice), dta.getnacionalidad().get(indice), dta.getrol().get(indice), dta.getgenero().get(indice),dta.getDia().get(indice),dta.getMes().get(indice),dta.getAño().get(indice),dta.getusr().get(indice));
 }else JOptionPane.showMessageDialog(null, "Correo no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
 }
-public boolean existencia(String email){
+public boolean existencia(String email){// 
     datausers dta = new datausers();
     if(dta.getCorreos().contains(email)){
         indice=dta.getCorreos().indexOf(email);
